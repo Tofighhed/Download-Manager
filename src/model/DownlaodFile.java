@@ -28,8 +28,8 @@ public class DownlaodFile {
 
     /**How much of file has downloaded till now ..
      * */
-    private double get_download_persent (){
-        return (double) (last_downloaded_byte) / (double) (file_size);
+    public double get_download_persent (long downloaded,long size){
+        return (double) (downloaded / (double) (size));
     }
 
     public String getName() {
@@ -72,14 +72,25 @@ public class DownlaodFile {
     * File has downloaded Dont try ...
     * */
     public boolean is_finished(){
-        return last_downloaded_byte == file_size;
+        return getLast_downloaded_byte() == getFile_size();
     }
 
     /**
-     * Will try To Donload this Shit ...
+     * Will try To Download this Shit ...
      * */
     public boolean start_download (){
         return DownloadManager.download_Dfile(this);
     }
 
+    public long getLast_downloaded_byte() {
+        return last_downloaded_byte;
+    }
+
+    public void setLast_downloaded_byte(long last_downloaded_byte) {
+        this.last_downloaded_byte = last_downloaded_byte;
+    }
+
+    public void setFile_size(long file_size) {
+        this.file_size = file_size;
+    }
 }
