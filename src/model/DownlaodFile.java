@@ -3,6 +3,7 @@ package model;
 import java.io.File;
 
 public class DownlaodFile {
+
     private int status;
     private String name;
     private String file_type;
@@ -36,12 +37,24 @@ public class DownlaodFile {
         return name;
     }
 
+    public void setFile_type(String file_type) {
+        this.file_type = file_type;
+    }
+
+    public void setFile_path(String file_path) {
+        this.file_path = file_path;
+    }
+
     public String getFile_type() {
         return file_type;
     }
 
     public String getFile_path() {
         return file_path;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getFile_size() {
@@ -51,21 +64,30 @@ public class DownlaodFile {
 /* statuss download_ST = statuss.downloadin;
 
     enum  statuss   {downloadin , finished}*/
+/**
+ * set status of file*/
+//should add switch case for adding in Arraylist
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
-    static final String[] stat = {"sd" , "dsad" , "asda" , "dasa"};
-
-    /**0. unknown
-     * 1. downloading
-     * 2. pause
-     * 3. finished
+/**
+ * status of file*/
+    static final String[] stat = {"downloading" , "pause" , "finished" ,"failed"};
+    /** 0. downloading
+     *  1. pause
+     *  2. finished
+     *  3.failed
      * */
     public int getStatus_int() {
         return status;
     }
-
     public String getStatus_str (){
         return stat[getStatus_int() % 4];
     }
+
+
+
 
 
     /**
