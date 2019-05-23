@@ -1,3 +1,4 @@
+package Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,7 +38,7 @@ public class SecondpageController implements Initializable {
     }
     @FXML
     private void goback(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Firstpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/Firstpage.fxml"));
         anchorMain.getScene().setRoot(root);
     }
 

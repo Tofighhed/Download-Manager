@@ -1,4 +1,4 @@
-package controller;
+package Controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +20,7 @@ public class FirstpageController implements Initializable {
 
     @FXML
     private void CatOnAct(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Catpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/Catpage.fxml"));
         splitPaneMain.getScene().setRoot(root);
     }
 
@@ -31,7 +31,7 @@ public class FirstpageController implements Initializable {
 
     @FXML
     private void GoTo_nextPage(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/Secondpage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/Secondpage.fxml"));
         splitPaneMain.getScene().setRoot(root);
     }
 

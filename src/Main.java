@@ -1,4 +1,4 @@
-import model.DownloadManager;
+import Model.DownloadManager;
 
 public class Main {
 
