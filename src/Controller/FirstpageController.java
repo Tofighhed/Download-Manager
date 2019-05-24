@@ -2,26 +2,67 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import model.Data;
+import model.DownlaodFile;
+import model.DownloadManager;
 
 public class FirstpageController implements Initializable {
+
+    int sort_mod = 0; // 0 = all
+    Timer timer = new Timer();
+    TimerTask timerTask = new TimerTask() {
+        @Override
+        public void run() {
+            set_table_data(sort_mod);
+        }
+    };
+
     @FXML
     private SplitPane splitPaneMain;
+    @FXML
+    private TableView tableView;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
     }    
 
     @FXML
     private void CatOnAct(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/View/Catpage.fxml"));
         splitPaneMain.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void START (ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("/View/Catpage.fxml"));
+//        splitPaneMain.getScene().setRoot(root);
+
+
+        DownloadManager downloadManager= new DownloadManager();
+        DownloadManager downloadManager1=new DownloadManager();
+        downloadManager.setUrl("http://dl.faazmusic.com/server/1398/2%20ordibehesht/30/Mostafa%20Yeganeh%20-%20Che%20Konam%20Ba%20To%20(128).mp3");
+        downloadManager1.setUrl("https://as11.cdn.asset.aparat.com/aparat-video/9434fd236c6814080323682d04da4b1915028371-480p__35163.mp4");
+        downloadManager.start();
+        downloadManager1.start();
+
+        timer.scheduleAtFixedRate(timerTask , 1000 , 2000 );
     }
 
     @FXML
@@ -49,5 +90,43 @@ public class FirstpageController implements Initializable {
 
     @FXML
     private void Losed_list(ActionEvent event) {
+    }
+
+
+    public void set_table_data (int mod){
+        ArrayList<DownlaodFile> list = Data.getFiles();
+        ArrayList<DownlaodFile> using_list = new ArrayList<>();
+
+        switch (mod){
+            case 0:
+                // all OK
+                using_list = list;
+                break;
+        }
+
+//        TableView tableView = new TableView();
+
+        tableView.getItems().clear();
+        for (DownlaodFile df:using_list) {
+            tableView.getItems().add(df);
+        }
+
+//        tableView.refresh();
+
+//        VBox vbox = new VBox(tableView);
+
+        /*Scene scene = new Scene(vbox);
+
+        this.splitPaneMain.getItems().get(1).
+        this.setScene(scene);
+
+        primaryStage.show();*/
+
+//        tableView.getItems().add(new Person("Jane", "Deer"));
+
+
+
+
+
     }
 }

@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.io.File;
 
@@ -11,6 +11,15 @@ public class DownlaodFile {
     private long file_size = Long.MAX_VALUE ;
     private long last_downloaded_byte = 0;
     private File file;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     /**
      * get file of download
@@ -64,15 +73,15 @@ public class DownlaodFile {
 /* statuss download_ST = statuss.downloadin;
 
     enum  statuss   {downloadin , finished}*/
-/**
- * set status of file*/
+    /**
+     * set status of file*/
 //should add switch case for adding in Arraylist
     public void setStatus(int status) {
         this.status = status;
     }
 
-/**
- * status of file*/
+    /**
+     * status of file*/
     static final String[] stat = {"downloading" , "pause" , "finished" ,"failed"};
     /** 0. downloading
      *  1. pause
@@ -91,8 +100,8 @@ public class DownlaodFile {
 
 
     /**
-    * File has downloaded Dont try ...
-    * */
+     * File has downloaded Dont try ...
+     * */
     public boolean is_finished(){
         return getLast_downloaded_byte() == getFile_size();
     }
@@ -103,16 +112,25 @@ public class DownlaodFile {
     public boolean start_download (){
         return DownloadManager.download_Dfile(this);
     }
-
+    /**
+     * to get last byte downloaded*/
     public long getLast_downloaded_byte() {
         return last_downloaded_byte;
     }
-
+    /**
+     * to set last byte downloaded*/
     public void setLast_downloaded_byte(long last_downloaded_byte) {
         this.last_downloaded_byte = last_downloaded_byte;
     }
-
+    /**
+     * to set size of file*/
     public void setFile_size(long file_size) {
         this.file_size = file_size;
     }
+
+    public String[] to_item() {
+        return new String[] {name , file_size + "" , getStatus_str() , get_download_persent(last_downloaded_byte , file_size) + ""};
+    }
 }
+
+

@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -30,11 +30,13 @@ public class DownloadManager extends Thread {
     /**
      * download Thread
      */
+
     @Override
     public void run() {
 
         DownlaodFile downlaodFile = new DownlaodFile();
         Data.setFiles(downlaodFile);
+        downlaodFile.setUrl(url);
         downlaodFile.setFile_type(specify_type_of_file(url));
         long reads = 0;
         try {
@@ -43,12 +45,13 @@ public class DownloadManager extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(currentThreads);
+        currentThreads++;
         if (currentThreads==MAX_THREADS){
             downlaodFile.setStatus(1);
             return;
         }
         try {
-            currentThreads++;
             downlaodFile.setName(Paths.get(new URI(url).getPath()).getFileName().toString());
             BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
             FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\TOFIGHHED\\Downloads\\opera autoupdate\\"+downlaodFile.getName(),true);
@@ -57,7 +60,7 @@ public class DownloadManager extends Thread {
                     in.skip(downlaodFile.getLast_downloaded_byte());
                 }
                 catch (Exception e){
-                e.printStackTrace();}
+                    e.printStackTrace();}
             }
 
             byte dataBuffer[] = new byte[1024];
@@ -73,7 +76,7 @@ public class DownloadManager extends Thread {
                 }
             }
             if (bytesread==-1){downlaodFile.setStatus(2);
-            currentThreads--;
+                currentThreads--;
             }
 
         } catch (Exception e) {
@@ -189,15 +192,27 @@ public class DownloadManager extends Thread {
 
 
 
+public static void pause_download(String url){
+        Pause pause=new Pause(url);
+        pause.start();
+
+}
 
 
 
 
 
 
-    public void pause(DownlaodFile file){
+
+    public static void start_download(String urll){
+
+        DownloadManager dm=new DownloadManager();
+        dm.setUrl(urll);
+        dm.start();
 
     }
+
+
 
 
 }
