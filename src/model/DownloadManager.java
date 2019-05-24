@@ -16,6 +16,10 @@ public class DownloadManager extends Thread {
     private static final int MAX_THREADS = 4;
     private static int currentThreads = 0;
 
+    public static int getCurrentThreads() {
+        return currentThreads;
+    }
+
     /**
      * add already exit DFile to download ...
      */
@@ -35,6 +39,7 @@ public class DownloadManager extends Thread {
     public void run() {
 
         DownlaodFile downlaodFile = new DownlaodFile();
+        downlaodFile.setDm(this);
         Data.setFiles(downlaodFile);
         downlaodFile.setUrl(url);
         downlaodFile.setFile_type(specify_type_of_file(url));
@@ -54,7 +59,7 @@ public class DownloadManager extends Thread {
         try {
             downlaodFile.setName(Paths.get(new URI(url).getPath()).getFileName().toString());
             BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
-            FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\TOFIGHHED\\Downloads\\opera autoupdate\\"+downlaodFile.getName(),true);
+            FileOutputStream fileOutputStream = new FileOutputStream(downlaodFile.getName(),true);
             if (downlaodFile.getLast_downloaded_byte()==0){
                 try {
                     in.skip(downlaodFile.getLast_downloaded_byte());
@@ -196,6 +201,11 @@ public static void pause_download(String url){
         Pause pause=new Pause(url);
         pause.start();
 
+}
+
+public static void resume_download(String url){
+        Resume resume=new Resume(url);
+        resume.start();
 }
 
 

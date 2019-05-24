@@ -5,46 +5,6 @@ public class Data {
 
     private static ArrayList<DownlaodFile> data_files_all = new ArrayList<>();
 
-    private static ArrayList<DownlaodFile> data_files_finished = new ArrayList<>();
-
-    private static ArrayList<DownlaodFile> data_files_paused = new ArrayList<>();
-
-    private static ArrayList<DownlaodFile> data_files_downloding = new ArrayList<>();
-
-    private static ArrayList<DownlaodFile> getData_files_in_queue = new ArrayList<>();
-
-    public static ArrayList<DownlaodFile> getData_files_finished() {
-        return data_files_finished;
-    }
-
-    public static void setData_files_finished(DownlaodFile data_file_finished) {
-        data_files_finished.add(data_file_finished);
-    }
-
-    public static ArrayList<DownlaodFile> getData_files_paused() {
-        return data_files_paused;
-    }
-
-    public static void setData_files_paused(DownlaodFile data_file_paused) {
-        data_files_paused.add(data_file_paused);
-    }
-
-    public static ArrayList<DownlaodFile> getData_files_downloding() {
-        return data_files_downloding;
-    }
-
-    public static void setData_files_downloding(DownlaodFile data_file_downloding) {
-        data_files_downloding.add(data_file_downloding);
-    }
-
-    public static ArrayList<DownlaodFile> getGetData_files_in_queue() {
-        return getData_files_in_queue;
-    }
-
-    public static void setGetData_files_in_queue(DownlaodFile data_file_in_queue) {
-        getGetData_files_in_queue().add(data_file_in_queue);
-    }
-
     public static ArrayList<DownlaodFile> getFiles() {
         return data_files_all;
     }
@@ -53,17 +13,144 @@ public class Data {
         data_files_all.add(file);
     }
 
-    /**
-     * serach by name in all files*/
-    public static DownlaodFile search_name_in_all(String name_of_file) {
 
 
-        for (DownlaodFile df : data_files_all) {
-            if (df.getName().equalsIgnoreCase(name_of_file)) {
-                return df;
+    public static ArrayList finished_files(){
+        ArrayList<DownlaodFile> finishe_files=new ArrayList<>();
+        for (DownlaodFile file:getFiles()){
+            if (file.getStatus_int()==2){
+                finishe_files.add(file);
             }
         }
-        DownlaodFile d = new DownlaodFile();
-        return d;
+        return finishe_files;
     }
+
+
+
+
+ public static ArrayList failed_files(){
+        ArrayList<DownlaodFile> faile_files=new ArrayList<>();
+        for (DownlaodFile file:getFiles()){
+            if (file.getStatus_int()==3){
+                faile_files.add(file);
+            }
+        }
+        return faile_files;
+    }
+
+
+
+
+
+
+    public static ArrayList paused_files(){
+        ArrayList<DownlaodFile> pause_files=new ArrayList<>();
+        for (DownlaodFile file:getFiles()){
+            if (file.getStatus_int()==3){
+                pause_files.add(file);
+            }
+        }
+        return pause_files;
+    }
+    public static ArrayList downloading_files(){
+        ArrayList<DownlaodFile> downloadin_files=new ArrayList<>();
+        for (DownlaodFile file:getFiles()){
+            if (file.getStatus_int()==3){
+                downloadin_files.add(file);
+            }
+        }
+        return downloadin_files;
+    }
+
+
+public static ArrayList mp3_files(){
+        ArrayList<DownlaodFile> song_files=new ArrayList<>();
+        for (DownlaodFile file:Data.getFiles()){
+            if (file.getFile_type().equalsIgnoreCase("mp3")){
+                song_files.add(file);
+            }
+
+        }
+        return song_files;
 }
+
+
+    public static ArrayList video_files(){
+        ArrayList<DownlaodFile> movie_files=new ArrayList<>();
+        for (DownlaodFile file:Data.getFiles()){
+            if (file.getFile_type().equalsIgnoreCase("mp4") || file.getFile_type().equalsIgnoreCase("mkv")){
+                movie_files.add(file);
+            }
+
+        }
+        return movie_files;
+    }
+
+
+
+    public static ArrayList rar_files(){
+        ArrayList<DownlaodFile> zip_files=new ArrayList<>();
+        for (DownlaodFile file:Data.getFiles()){
+            if (file.getFile_type().equalsIgnoreCase("rar") || file.getFile_type().equalsIgnoreCase("zip")){
+                zip_files.add(file);
+            }
+
+        }
+        return zip_files;
+    }
+
+
+    public static ArrayList document_files(){
+        ArrayList<DownlaodFile> doc_files=new ArrayList<>();
+        for (DownlaodFile file:Data.getFiles()){
+            if (file.getFile_type().equalsIgnoreCase("pdf")){
+                doc_files.add(file);
+            }
+
+        }
+        return doc_files;
+    }
+
+
+
+
+
+    public static ArrayList program_files(){
+        ArrayList<DownlaodFile> prog_files=new ArrayList<>();
+        for (DownlaodFile file:Data.getFiles()){
+            if (file.getFile_type().equalsIgnoreCase("mp3")){
+                prog_files.add(file);
+            }
+
+        }
+        return prog_files;
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

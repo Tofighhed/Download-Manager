@@ -26,10 +26,10 @@
                <content>
                   <TableView fx:id="tableView" prefHeight="437.0" prefWidth="523.0">
                      <columns>
-                        <TableColumn prefWidth="240.0" text="Name" />
-                        <TableColumn prefWidth="100.0" text="Size" />
-                        <TableColumn prefWidth="75.0" text="Status" />
-                        <TableColumn prefWidth="75.0" text="Persent" />
+                        <TableColumn prefWidth="198.0" text="Name" />
+                        <TableColumn prefWidth="114.0" text="Size" />
+                        <TableColumn prefWidth="103.0" text="Status" />
+                        <TableColumn prefWidth="93.0" text="Persent" />
                      </columns>
                   </TableView>
                </content>

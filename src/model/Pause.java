@@ -7,12 +7,16 @@ public Pause(){}
     @Override
     public void run() {
 
+try {
+    for (DownlaodFile file:Data.getFiles()){
+        if (file.getUrl().equalsIgnoreCase(urll)){
+            file.setStatus(1);
 
-            for (DownlaodFile file:Data.getFiles()){
-                if (file.getUrl().equalsIgnoreCase(urll)){
-                    file.setStatus(1);
-                }
-            }
+        }
+    }
+}
+catch (Exception e){e.printStackTrace();}
+
 
         }
     }

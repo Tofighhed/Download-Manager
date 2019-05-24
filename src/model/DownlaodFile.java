@@ -12,6 +12,15 @@ public class DownlaodFile {
     private long last_downloaded_byte = 0;
     private File file;
     private String url;
+    private DownloadManager dm;
+
+    public DownloadManager getDm() {
+        return dm;
+    }
+
+    public void setDm(DownloadManager dm) {
+        this.dm = dm;
+    }
 
     public String getUrl() {
         return url;

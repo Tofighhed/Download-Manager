@@ -1,4 +1,6 @@
 package Controller;
+
+import model.DownloadManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,30 +10,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class SecondpageController implements Initializable {
-
-    private Stage primaryStage;
-    private FXMLLoader loader;
-
-    public void setPrimaryStage(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-    }
-
-    public void setLoader(FXMLLoader loader) {
-        this.loader = loader;
-    }
-
-    @FXML
-    private Button ok_second;
     @FXML
     private AnchorPane anchorMain;
-
     @FXML
-    private TextField str_url;
+    private TextField Url_field;
+    @FXML
+    private AnchorPane download_page;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -43,11 +32,14 @@ public class SecondpageController implements Initializable {
     }
 
     @FXML
-    public void add_url(javafx.event.ActionEvent event)throws IOException{
-
-    String url1 = str_url.getText();
-
+    private void ok_second(ActionEvent event) throws IOException {
+        String url1 = Url_field.getText().toString();
+        DownloadManager.start_download(url1);
+        Parent root = FXMLLoader.load(getClass().getResource("/View/Downloadingpg.fxml"));
+        download_page.getScene().setRoot(root);
 
     }
 }
+
+
 
