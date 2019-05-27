@@ -24,16 +24,15 @@
          <children>
             <ScrollPane prefHeight="440.0" prefWidth="523.0">
                <content>
-                  <TableView fx:id="tableView" prefHeight="437.0" prefWidth="523.0">
-                     <columns>
-                        <TableColumn prefWidth="198.0" text="Name" />
-                        <TableColumn prefWidth="114.0" text="Size" />
-                        <TableColumn prefWidth="103.0" text="Status" />
-                        <TableColumn prefWidth="93.0" text="Persent" />
-                     </columns>
+                  <TableView fx:id="tab" prefHeight="442.0" prefWidth="499.0">
+                    <columns>
+                      <TableColumn fx:id="tableColumnname" prefWidth="173.0" text="Name " />
+                      <TableColumn fx:id="tableColumnsize" minWidth="0.0" prefWidth="118.0" text="Size" />
+                        <TableColumn fx:id="tableColumntype" minWidth="0.0" prefWidth="127.0" text="Type" />
+                        <TableColumn fx:id="tableColumnpersent" text="persent" />
+                    </columns>
                   </TableView>
-               </content>
-            </ScrollPane>
+               </content></ScrollPane>
          </children></AnchorPane>
   </items>
 </SplitPane>

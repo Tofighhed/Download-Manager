@@ -12,6 +12,16 @@ public class DownlaodFile {
     private long last_downloaded_byte = 0;
     private File file;
     private String url;
+    private double persent;
+
+    public double getPersent() {
+        return persent;
+    }
+
+    public void setPersent(double persent) {
+        this.persent = persent;
+    }
+
     private DownloadManager dm;
 
     public DownloadManager getDm() {
@@ -47,8 +57,8 @@ public class DownlaodFile {
 
     /**How much of file has downloaded till now ..
      * */
-    public double get_download_persent (long downloaded,long size){
-        return (double) (downloaded / (double) (size));
+    public double get_download_persent (){
+        return (double) (last_downloaded_byte/ (double) (file_size));
     }
 
     public String getName() {
@@ -104,23 +114,6 @@ public class DownlaodFile {
         return stat[getStatus_int() % 4];
     }
 
-
-
-
-
-    /**
-     * File has downloaded Dont try ...
-     * */
-    public boolean is_finished(){
-        return getLast_downloaded_byte() == getFile_size();
-    }
-
-    /**
-     * Will try To Download this Shit ...
-     * */
-    public boolean start_download (){
-        return DownloadManager.download_Dfile(this);
-    }
     /**
      * to get last byte downloaded*/
     public long getLast_downloaded_byte() {
@@ -137,9 +130,9 @@ public class DownlaodFile {
         this.file_size = file_size;
     }
 
-    public String[] to_item() {
-        return new String[] {name , file_size + "" , getStatus_str() , get_download_persent(last_downloaded_byte , file_size) + ""};
-    }
+//    public String[] to_item() {
+//        return new String[] {name , file_size + "" , getStatus_str() , get_download_persent(last_downloaded_byte , file_size) + ""};
+//    }
 }
 
 

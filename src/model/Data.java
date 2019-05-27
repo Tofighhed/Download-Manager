@@ -1,5 +1,11 @@
 package model;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sun.print.DialogOwner;
+
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.zip.DeflaterOutputStream;
 
 public class Data {
 
@@ -14,11 +20,10 @@ public class Data {
     }
 
 
-
-    public static ArrayList finished_files(){
-        ArrayList<DownlaodFile> finishe_files=new ArrayList<>();
-        for (DownlaodFile file:getFiles()){
-            if (file.getStatus_int()==2){
+    public static ArrayList<DownlaodFile> finished_files() {
+        ArrayList<DownlaodFile> finishe_files = new ArrayList<>();
+        for (DownlaodFile file : getFiles()) {
+            if (file.getStatus_int() == 2) {
                 finishe_files.add(file);
             }
         }
@@ -26,36 +31,36 @@ public class Data {
     }
 
 
-
-
- public static ArrayList failed_files(){
-        ArrayList<DownlaodFile> faile_files=new ArrayList<>();
-        for (DownlaodFile file:getFiles()){
-            if (file.getStatus_int()==3){
+    public static ArrayList<DownlaodFile> failed_files() {
+        ArrayList<DownlaodFile> faile_files = new ArrayList<>();
+        for (DownlaodFile file : getFiles()) {
+            if (file.getStatus_int() == 3) {
                 faile_files.add(file);
             }
         }
         return faile_files;
     }
+    public static ObservableList list_all (){
+
+        ObservableList<DownlaodFile> filess = FXCollections.observableArrayList(getFiles());
+        return filess;
+    }
 
 
-
-
-
-
-    public static ArrayList paused_files(){
-        ArrayList<DownlaodFile> pause_files=new ArrayList<>();
-        for (DownlaodFile file:getFiles()){
-            if (file.getStatus_int()==3){
+    public static ArrayList<DownlaodFile> paused_files() {
+        ArrayList<DownlaodFile> pause_files = new ArrayList<>();
+        for (DownlaodFile file : getFiles()) {
+            if (file.getStatus_int() == 3) {
                 pause_files.add(file);
             }
         }
         return pause_files;
     }
-    public static ArrayList downloading_files(){
-        ArrayList<DownlaodFile> downloadin_files=new ArrayList<>();
-        for (DownlaodFile file:getFiles()){
-            if (file.getStatus_int()==3){
+
+    public static ArrayList<DownlaodFile> downloading_files() {
+        ArrayList<DownlaodFile> downloadin_files = new ArrayList<DownlaodFile>();
+        for (DownlaodFile file : getFiles()) {
+            if (file.getStatus_int() == 3) {
                 downloadin_files.add(file);
             }
         }
@@ -63,22 +68,22 @@ public class Data {
     }
 
 
-public static ArrayList mp3_files(){
-        ArrayList<DownlaodFile> song_files=new ArrayList<>();
-        for (DownlaodFile file:Data.getFiles()){
-            if (file.getFile_type().equalsIgnoreCase("mp3")){
+    public static ArrayList<DownlaodFile> mp3_files() {
+        ArrayList<DownlaodFile> song_files = new ArrayList<>();
+        for (DownlaodFile file : Data.getFiles()) {
+            if (file.getFile_type().equalsIgnoreCase("mp3")) {
                 song_files.add(file);
             }
 
         }
         return song_files;
-}
+    }
 
 
-    public static ArrayList video_files(){
-        ArrayList<DownlaodFile> movie_files=new ArrayList<>();
-        for (DownlaodFile file:Data.getFiles()){
-            if (file.getFile_type().equalsIgnoreCase("mp4") || file.getFile_type().equalsIgnoreCase("mkv")){
+    public static ArrayList<DownlaodFile> video_files() {
+        ArrayList<DownlaodFile> movie_files = new ArrayList<>();
+        for (DownlaodFile file : Data.getFiles()) {
+            if (file.getFile_type().equalsIgnoreCase("mp4") || file.getFile_type().equalsIgnoreCase("mkv")) {
                 movie_files.add(file);
             }
 
@@ -87,11 +92,10 @@ public static ArrayList mp3_files(){
     }
 
 
-
-    public static ArrayList rar_files(){
-        ArrayList<DownlaodFile> zip_files=new ArrayList<>();
-        for (DownlaodFile file:Data.getFiles()){
-            if (file.getFile_type().equalsIgnoreCase("rar") || file.getFile_type().equalsIgnoreCase("zip")){
+    public static ArrayList<DownlaodFile> rar_files() {
+        ArrayList<DownlaodFile> zip_files = new ArrayList<>();
+        for (DownlaodFile file : Data.getFiles()) {
+            if (file.getFile_type().equalsIgnoreCase("rar") || file.getFile_type().equalsIgnoreCase("zip")) {
                 zip_files.add(file);
             }
 
@@ -100,10 +104,10 @@ public static ArrayList mp3_files(){
     }
 
 
-    public static ArrayList document_files(){
-        ArrayList<DownlaodFile> doc_files=new ArrayList<>();
-        for (DownlaodFile file:Data.getFiles()){
-            if (file.getFile_type().equalsIgnoreCase("pdf")){
+    public static ArrayList<DownlaodFile> document_files() {
+        ArrayList<DownlaodFile> doc_files = new ArrayList<>();
+        for (DownlaodFile file : Data.getFiles()) {
+            if (file.getFile_type().equalsIgnoreCase("pdf") || file.getFile_type().equalsIgnoreCase("doc") || file.getFile_type().equalsIgnoreCase("docx")) {
                 doc_files.add(file);
             }
 
@@ -112,13 +116,10 @@ public static ArrayList mp3_files(){
     }
 
 
-
-
-
-    public static ArrayList program_files(){
-        ArrayList<DownlaodFile> prog_files=new ArrayList<>();
-        for (DownlaodFile file:Data.getFiles()){
-            if (file.getFile_type().equalsIgnoreCase("mp3")){
+    public static ArrayList<DownlaodFile> program_files() {
+        ArrayList<DownlaodFile> prog_files = new ArrayList<>();
+        for (DownlaodFile file : Data.getFiles()) {
+            if (file.getFile_type().equalsIgnoreCase("exe") || file.getFile_type().equalsIgnoreCase("msi")) {
                 prog_files.add(file);
             }
 
@@ -126,12 +127,18 @@ public static ArrayList mp3_files(){
         return prog_files;
     }
 
+    public static double get_persent_search_by_url(String url) {
 
+        for (DownlaodFile df : getFiles()) {
+            if (df.getUrl().equalsIgnoreCase(url)) {
+                return df.get_download_persent();
+            }
 
+        }
+        return -1;
+
+    }
 }
-
-
-
 
 
 

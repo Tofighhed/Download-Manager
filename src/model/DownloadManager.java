@@ -14,6 +14,15 @@ public class DownloadManager extends Thread {
     private String url;
 
     private static final int MAX_THREADS = 4;
+
+    public static int getMaxThreads() {
+        return MAX_THREADS;
+    }
+
+    public static void setCurrentThreads(int currentThreads) {
+        DownloadManager.currentThreads = currentThreads;
+    }
+
     private static int currentThreads = 0;
 
     public static int getCurrentThreads() {
@@ -73,7 +82,8 @@ public class DownloadManager extends Thread {
             while ((bytesread = in.read(dataBuffer, 0, 1024)) != -1) {
                 reads = (long) bytesread + reads;
                 downlaodFile.setLast_downloaded_byte(reads);
-                System.out.println(round(downlaodFile.get_download_persent(downlaodFile.getLast_downloaded_byte(), downlaodFile.getFile_size()), 2));
+                downlaodFile.setPersent(100*round(downlaodFile.get_download_persent(),2));
+                System.out.println(round(downlaodFile.get_download_persent(),2));
                 fileOutputStream.write(dataBuffer, 0, bytesread);
                 if (downlaodFile.getStatus_int()==1){
                     currentThreads--;
@@ -199,13 +209,16 @@ public class DownloadManager extends Thread {
 
 public static void pause_download(String url){
         Pause pause=new Pause(url);
+    System.out.println("ppppp");
         pause.start();
 
 }
 
 public static void resume_download(String url){
         Resume resume=new Resume(url);
+    System.out.println("rrrrr");
         resume.start();
+
 }
 
 
@@ -218,7 +231,18 @@ public static void resume_download(String url){
 
         DownloadManager dm=new DownloadManager();
         dm.setUrl(urll);
+        System.out.println("ssssss");
         dm.start();
+
+    }
+
+    public static void delete_downloadfile(String urll){
+
+        Delete delete=new Delete(urll);
+        Pause pause=new Pause(urll);
+        pause.start();
+        delete.start();
+
 
     }
 

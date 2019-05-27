@@ -4,12 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 public class Idm20 extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/View/Firstpage.fxml"));
+
+
         Scene scene = new Scene(root);
         stage.setResizable(false);
         stage.setScene(scene);
@@ -18,5 +19,5 @@ public class Idm20 extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
