@@ -84,6 +84,7 @@ public class DownloadManager extends Thread {
                 downlaodFile.setLast_downloaded_byte(reads);
                 downlaodFile.setPersent(100*round(downlaodFile.get_download_persent(),2));
                 System.out.println(round(downlaodFile.get_download_persent(),2));
+                System.out.println(downlaodFile.getStatus_int());
                 fileOutputStream.write(dataBuffer, 0, bytesread);
                 if (downlaodFile.getStatus_int()==1){
                     currentThreads--;
@@ -92,11 +93,13 @@ public class DownloadManager extends Thread {
             }
             if (bytesread==-1){downlaodFile.setStatus(2);
                 currentThreads--;
+                System.out.println(downlaodFile.getStatus_str());
             }
+
 
         } catch (Exception e) {
             e.getCause();
-            downlaodFile.setStatus(4);
+            downlaodFile.setStatus(3);
         }
     }
 

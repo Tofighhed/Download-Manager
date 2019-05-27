@@ -29,7 +29,7 @@ import model.DownloadManager;
 public class FirstpageController implements Initializable {
 
 //    int sort_mod = 0; // 0 = all
-//    Timer timer = new Timer();
+    Timer timer = new Timer();
 //    TimerTask timerTask = new TimerTask() {
 //        @Override
 //        public void run() {
@@ -64,7 +64,7 @@ public class FirstpageController implements Initializable {
 //        DownloadManager.start_download("http://dl.faazmusic.com/server/1398/2%20ordibehesht/30/Mostafa%20Yeganeh%20-%20Che%20Konam%20Ba%20To%20(128).mp3");
 //        tableView.refresh();
         DownloadManager.start_download("http://dl.faazmusic.com/server/1398/2%20ordibehesht/30/Mostafa%20Yeganeh%20-%20Che%20Konam%20Ba%20To%20(128).mp3");
-        Downloading_list(event);
+//        Downloading_list(event);
 //        tableView.refresh();
 
 //        timer.scheduleAtFixedRate(timerTask , 1000 , 2000 );
@@ -88,29 +88,38 @@ private TableColumn tableColumnsize=new TableColumn();
 private TableColumn tableColumntype= new TableColumn();
 @FXML
 private TableColumn tableColumnpersent=new TableColumn();
+@FXML
+private TableColumn tableColumnstatus=new TableColumn();
 
 @FXML
 private TableView tab=new TableView();
 
+
+//Show all data
 public void setdatein_all(){
 
     tableColumnname.setCellValueFactory(new PropertyValueFactory<>("name"));
     tableColumnsize.setCellValueFactory(new PropertyValueFactory<>("file_size"));
     tableColumntype.setCellValueFactory(new PropertyValueFactory<>("file_type"));
     tableColumnpersent.setCellValueFactory(new PropertyValueFactory<>("persent"));
+    tableColumnstatus.setCellValueFactory(new PropertyValueFactory<>("statuss"));
 
     ObservableList ob=Data.list_all();
     tab.setItems(ob);
-    tableView.refresh();
 }
 
     @FXML
     private void Downloading_list(ActionEvent event) {
+
+
         setdatein_all();
+
+
     }
 
     @FXML
     private void Downloaded_list(ActionEvent event) {
+    DownloadManager.delete_downloadfile("http://dl.faazmusic.com/server/1398/2%20ordibehesht/30/Mostafa%20Yeganeh%20-%20Che%20Konam%20Ba%20To%20(128).mp3");
     }
 
     @FXML

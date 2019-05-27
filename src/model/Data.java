@@ -40,9 +40,13 @@ public class Data {
         }
         return faile_files;
     }
+
+
     public static ObservableList list_all (){
 
-        ObservableList<DownlaodFile> filess = FXCollections.observableArrayList(getFiles());
+      ObservableList<DownlaodFile>  filess = FXCollections.observableArrayList(getFiles());
+        filess.removeAll(FXCollections.observableArrayList(getFiles()));
+        filess.addAll(FXCollections.observableArrayList(getFiles()));
         return filess;
     }
 

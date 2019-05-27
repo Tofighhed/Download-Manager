@@ -26,10 +26,11 @@
                <content>
                   <TableView fx:id="tab" prefHeight="442.0" prefWidth="499.0">
                     <columns>
-                      <TableColumn fx:id="tableColumnname" prefWidth="173.0" text="Name " />
-                      <TableColumn fx:id="tableColumnsize" minWidth="0.0" prefWidth="118.0" text="Size" />
-                        <TableColumn fx:id="tableColumntype" minWidth="0.0" prefWidth="127.0" text="Type" />
-                        <TableColumn fx:id="tableColumnpersent" text="persent" />
+                      <TableColumn fx:id="tableColumnname" prefWidth="198.0" text="Name " />
+                      <TableColumn fx:id="tableColumnsize" minWidth="0.0" prefWidth="56.0" text="Size" />
+                        <TableColumn fx:id="tableColumntype" minWidth="0.0" prefWidth="75.0" text="Type" />
+                        <TableColumn fx:id="tableColumnpersent" prefWidth="73.0" text="persent" />
+                        <TableColumn fx:id="tableColumnstatus" prefWidth="89.0" text="Status" />
                     </columns>
                   </TableView>
                </content></ScrollPane>

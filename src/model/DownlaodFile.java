@@ -5,6 +5,20 @@ import java.io.File;
 public class DownlaodFile {
 
     private int status;
+    private String statuss=getStatus_str();
+
+    public int getStatus() {
+        return status;
+    }
+
+    public String getStatuss() {
+        return statuss;
+    }
+
+    public void setStatuss(String statuss) {
+        this.statuss = statuss;
+    }
+
     private String name;
     private String file_type;
     private String file_path;
@@ -97,6 +111,16 @@ public class DownlaodFile {
 //should add switch case for adding in Arraylist
     public void setStatus(int status) {
         this.status = status;
+        switch (status){
+            case 0:this.statuss="downloading";
+            break;
+            case 1:this.statuss="pause";
+            break;
+            case 2:this.statuss="finished";
+            break;
+            case 3:this.statuss="failed";
+            break;
+        }
     }
 
     /**
